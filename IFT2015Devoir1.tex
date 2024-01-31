@@ -15,6 +15,11 @@
 %usepackage{crimson}
 
 
+\DeclareRobustCommand{\looongrightarrow}{%
+  \DOTSB\relbar\joinrel\relbar\joinrel\relbar\joinrel\rightarrow
+}
+
+
 \title{\Huge{Structures de Données}\\{IFT2015}\\{\textbf{Devoir 1}}}
 \author{\huge{Franz Girardin}}
 \date{\today}
@@ -251,7 +256,7 @@ public class MistFonction1{
   L'algorithme semble compter le nombre de façons possibles de se déplacer 
   dans une grille $m \times n$ avec comme contrainte de se déplacer uniquement 
   vers le bas ($m$) ou uniquement vers la drotie $(n)$
-  \section{\texttt{MistFunction2}} 
+  \section{\texttt{MistFonction2}} 
   \paragraph{Raison d'être}
   Soit une chaine de caractères \texttt{target} et une liste 
   \texttt{pieces} dont chaque élément est un caractère de  
@@ -320,10 +325,115 @@ public class MistFonction1{
   réduite à \( O(n^2) \), car chaque indice contiendrait au plus une combinaison de \texttt{n} 
   caractères, et il y a \texttt{n+1} indices.
 
+  \section{\texttt{MistFonction3}}
+  \begin{lstlisting}[style=JavaDraculaWhite]
+ public class MistFunction3 {
+    public static boolean mistFunction3(int target, int[] options) {
+        boolean[] table = new boolean[target + 1];
+        table[0] = true;
 
-  Il est aussi possible de modifier
-  le contenu 
-  en ajoutant
+        for (int i = 0; i <= target; i++) {
+            if (table[i]) {
+                for (int option : options) {
+                    if (i + option <= target) {
+                        table[i + option] = true;
+                    }
+                }
+            }
+        }
+        return table[target];
+    }
+}    
+  \end{lstlisting}
+
+
+  \paragraph{Raison d'être}
+  La fonction vérifie s'il est possible d'additionner une combinaison 
+  d'entiers présents 
+  dans le tableau d'options \texttt{options} afin d'obtenir le nombre 
+  \texttt{target}.
+
+
+  \paragraph{Complexité dans le temps}
+  La complexité temporelle est déterminée par les deux boucles imbriquées 
+  itératives. La boucle extérireure s'exécute une seule fois de 
+  \texttt{0} à \texttt{target}. Plus l'entier \texttt{target} est grand, 
+  plus grand sera le nombre d'itérations. Pour cette portion, nous obtenons alors 
+  un complexité de $O(n)$ où $n$ est la valur de \texttt{target}. Par ailleurs, 
+  pour chaque itération de la boucle extérireure, nous effectuons $m$ itérations 
+  de la boucles intérieure où $m$ est le nombre de possibilité dans le 
+  tableau \texttt{options}. Nous avons donc une complexité :
+           \[ O( n \cdot m)\]
+  Or, il est possible que le nombre d'options fournies soit considérablement 
+  inférieure à la valeur de \texttt{target}. Dans ce cas, la complexité         
+  sera quasi linéaire.  
+          \[O(n \cdot m) \stackrel{m \to 1}{\looongrightarrow} O(n) \]
+
+
+  \paragraph{Complexité dans l'espace}
+  L'opération la plus déterminante pour la complexité spaciale est la création 
+  du tableau \texttt{table}. Ce tableau contient une entrée de plus que la taille de l'entier 
+  \texttt{target}. Ainsi, plus l'entier \texttt{target} est grand, plus grand 
+  sera le tableau \texttt{table} et plus grande sera la consommation de mémoire. 
+  La complexité spaciale évolue donc linéairement avec $n$ où $n$ est la 
+  valeur de \texttt{target} :
+  \[ O(n) \]
+
+
+  \section{Approche récursive}
+  \paragraph{MistFonction2}
+  Pour trouver toutes les combinaisons possibles de \texttt{target} en utilisant les 
+  pièces \texttt{pieces}, chaque appel récursif devra tenter de reconstituer 
+  \texttt{target}. Pour cela, chaque combinaison sera recalculée plusieurs fois, 
+  puisque pour un caractère donnée de \texttt{target}, on épuises les 
+  possibilités de \texttt{pieces}. Si \texttt{target} a une longeur $n$ 
+  et \texttt{pieces} a une longueur $m$, la complexité temporelle sera alors :
+  \[ O(m^n) \]
+
+
+
+
+  \paragraph{\textbf{\texttt{MistFonction3}}}
+  Pour vérifier \textit{récursivement}   
+  si une combinaison d'éléments dans un tableau d'options \texttt{options} 
+  permet d'engendrer l'entier \texttt{target}, il faudrait évaluer 
+  récursivement toutes les combinaisons possibles. Pour chaque élément 
+  de \texttt{options}, deux possibilités s'offre à nous : inclure l'entrée à l'index 
+  courant dans la somme ou ne pas l'inclure. Cela génère $2^m$ appels récursifs 
+  où $m$ est la quantité d'éléments dans les tableau original \texttt{options}.   
+  La complexité serait donc :
+  \[ O(2^m) \]
+  Pour une \texttt{target} \texttt{T}, un tableau d'options \texttt{[A, B, C]} 
+  (\texttt{A}, \texttt{B} t \texttt{C} sont des entiers et peuvent prendre n'importe quelle 
+  valeur pour cet exemple) et un 
+  index $i$, nous avons les appels récursifs suivants. 
+
+
+    \dirtree{%
+    .1 \( f(\texttt{T, [A, B, C], 0}) \).
+    .2 Inclure A: \( f(\texttt{T-A, [A, B, C], 1}) \).
+    .3 Inclure B: \( f(\texttt{T-A-B, [A, B, C], 2}) \).
+    .4 Inclure C: \( f(\texttt{T-A-B-C, [A, B, C], 3}) \).
+    .4 Exclure C: \( f(\texttt{T-A-B, [A, B, C], 3}) \).
+    .3 Exclure B: \( f(\texttt{T-A, [A, B, C], 2}) \).
+    .4 Inclure C: \( f(\texttt{T-A-C, [A, B, C], 3}) \).
+    .4 Exclure C: \( f(\texttt{T-A, [A, B, C], 3}) \).
+    .2 Exclure A: \( f(\texttt{T, [A, B, C], 1}) \).
+    .3 Inclure B: \( f(\texttt{T-B, [A, B, C], 2}) \).
+    .4 Inclure C: \( f(\texttt{T-B-C, [A, B, C], 3}) \).
+    .4 Exclure C: \( f(\texttt{T-B, [A, B, C], 3}) \).
+    .3 Exclure B: \( f(\texttt{T, [A, B, C], 2}) \).
+    .4 Inclure C: \( f(\texttt{T-C, [A, B, C], 3}) \).
+    .4 Exclure C: \( f(\texttt{T, [A, B, C], 3}) \).
+    }
+
+
+
+
+
+
+
+
 
 
 
