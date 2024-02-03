@@ -2,7 +2,7 @@
 %\usepackage[utopia]{mathdesign}
 
 % Permet d'ajuster la taille des marges et de la distance pour les footer
-\usepackage[tmargin=2cm,rmargin=0.4in,lmargin=0.4in,bmargin=2cm,footskip=.2in]{geometry}
+\usepackage[tmargin=2cm,rmargin=0.85in,lmargin=0.85in,bmargin=2cm,footskip=.5in]{geometry}
 
 % Permet d'optimiser l'affichage de différents symboles et formules mathématiques
 %\usepackage{amsmath,amsthm,mathtools}
@@ -20,7 +20,7 @@
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{arydshln}
-            %%%%%%%%%%%%%%%%%  Sect.        14 Oct 2024     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            %%%%%%%%%%%%%%%%%  Sect.        14 Oct 2024     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{balance}
 \usepackage{dirtree}
 \usepackage{titlesec}
@@ -62,6 +62,7 @@
 \usepackage{framed}
 \usepackage{titletoc}
 \usepackage{etoolbox}
+\usepackage{lmodern}
 \usepackage{tabularx}
 \usepackage{enumitem}
 \usepackage{amsthm}
@@ -280,7 +281,7 @@ picture]{%
   [0em]{\vspace*{2\baselineskip}}
   {\parbox{4.5em}{%
     \hfill\Huge\rmfamily\bfseries\color{myred}\thecontentspage}%
-   \vspace*{-2.3\baselineskip}\leftbar\textsc{\small\chaptername~\thecontentslabel}\\\rmfamily}
+   \vspace*{-2.3\baselineskip}\leftbar\textsc{\small Section~\thecontentslabel}\\\rmfamily}
   {}{\endleftbar}
 \titlecontents{section}
   [8.4em]
@@ -441,10 +442,10 @@ picture]{%
     language=Java,
     backgroundcolor=\color{draculawhite-background},
     commentstyle=\itshape\color{draculawhite-comment},
-    keywordstyle=\ttfamily\color{draculawhite-keyword},
+    keywordstyle=\color{draculawhite-keyword},
     stringstyle=\color{draculawhite-string},
     basicstyle=\ttfamily\footnotesize\color{black},
-    identifierstyle=\color{myb!90},
+    identifierstyle=\color{black},
     keywordstyle=\color{draculawhite-keyword}\bfseries,
     morecomment=[s][\color{draculawhite-comment}]{/**}{*/},
     showstringspaces=false,
