@@ -49,9 +49,10 @@ public class ArrayStack<E> implements Stack<E> {
 
     @Override
     public boolean isEmpty() {
-      // Lorsque le dessus a l'index -1, on sait que la pile est vide
+      // Lorsque le dessus a l'index 1, on sait que la pile est vide
         return (dessus == -1);
     }
+
 
     @Override
     public String toString() {

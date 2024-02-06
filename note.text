@@ -1,0 +1,58 @@
+DoubleStack: 
+
+
+
+Question :
+À quoi sert la double pile, comment elle fonctionne, d'après toi ?
+
+-- Il y a un problème avec l'initialisation de des piles individuelles. Les variables sommetPile1 et sommetPile2 sont 
+initialisées à l'index 0 du tableau (il y a donc collision entre les deux piles)
+Correction : mettre le somemt de la pile2 à l'index len - 1 (à la fin du tableau)
+
+methode push(boolean E e)
+À quoi sert ta condition : if (this.sommetpile1 + this.sommetPile2 == this.tPile.length)
+doit être changé puisque tes index de départ doivent être changés. 
+La pile 1 va être remplie par la gauche du tableau et la pile 2 va être remplie par la droite. 
+Lorsquqe chacune des piles contiendra 50 élément, l'index de dessus1 ne sera pas égal à l'index de dessus2 
+donc la condition this.sommetpile1 + this.sommetPile2 == this.tPile.length ne sera pas encontrée 
+
+
+Aussi, il faut lever une exception avec throw, et non afficher un message d'erreur avec System.out.println()
+
+Il faut changer des conditions de verification pour la verification de si la pille est vide. 
+D'ailleur, tu peux te sauver tu coder en appelant la fonction isEmpty() au lieu de recoder
+
+
+
+Pourquoi dans la méthode size() tu caste : return (int) this.sommetPile1. La variable sommetPile1 est déjà un int 
+
+Il faut changer la méthode isFull puisque les index de sommet sont mauvais.
+
+
+Ta méthode print n'est pas logique. Pour le print les éléments de la pile 2,
+tu devrais commncer à la moitié du tableau et finir à la fin du tableau.
+
+
+Voici à quoi ça devrait ressembler. 
+
+
+public void print() {
+    System.out.println("sommetPile1: " + this.sommetPile1 + ", sommetPile2: " + this.sommetPile2);
+    StringBuilder builder = new StringBuilder("les élements de la premiere pile: (");
+    for (int i = this.sommetPile1 - 1; i >= 0; i-- ) {
+        builder.append(this.tPile[i]);
+        if (i > 0 ) {
+            builder.append(", ");
+        }
+    }
+    builder.append(") les élements de la deuxieme pile: (");
+    for (int j = this.tPile.length - this.sommetPile2; j < this.tPile.length; j++ ) {
+        builder.append(this.tPile[j]);
+        if (j < this.tPile.length - 1) {
+            builder.append(", ");
+        }
+    }
+    builder.append(").");
+    System.out.println(builder);
+}
+

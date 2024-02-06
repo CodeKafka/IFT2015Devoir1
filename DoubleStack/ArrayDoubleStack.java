@@ -42,7 +42,7 @@ public class ArrayDoubleStack<E> implements DoubleStack<E> {
         if (one) {
             // Verifie que la pile contient au moin un element
             if (dessus1 >= 0) {
-                /* Decrement l'index de dessus, efface le contenu de dessus 
+                /* Decremente l'index de dessus, efface le contenu de dessus 
                 et retourne la valeur qui etait au dessus1 */ 
                 E reponse = doublePile[dessus1];
                 doublePile[dessus1] = null; 
@@ -59,8 +59,9 @@ public class ArrayDoubleStack<E> implements DoubleStack<E> {
           else {
         // Si aucune des pile ne contient d'element 
             throw new IllegalStateException(
-                "La double pile est vide, vous ne pouvez pas obtenir d'element. ")
+                "La double pile est vide, vous ne pouvez pas obtenir d'element. ");
         }
+        return null;
     }
 
     /* En fonction du boolean fourni, on verifie si la pile 
@@ -75,8 +76,9 @@ public class ArrayDoubleStack<E> implements DoubleStack<E> {
         }
           else {
               throw new IllegalStateException(
-                  "La double pile est vide, vous ne pouvez pas regarder l'element. ")
+                  "La double pile est vide, vous ne pouvez pas regarder l'element. ");
         }
+        return null;
     }
     
     /* En fonction du boolean fourni, on retourne la valeur   

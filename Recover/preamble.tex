@@ -2,7 +2,7 @@
 %\usepackage[utopia]{mathdesign}
 
 % Permet d'ajuster la taille des marges et de la distance pour les footer
-\usepackage[tmargin=2cm,rmargin=0.85in,lmargin=0.85in,bmargin=2cm,footskip=.5in]{geometry}
+\usepackage[tmargin=2cm,rmargin=0.4in,lmargin=0.4in,bmargin=2cm,footskip=.2in]{geometry}
 
 % Permet d'optimiser l'affichage de différents symboles et formules mathématiques
 %\usepackage{amsmath,amsthm,mathtools}
@@ -281,7 +281,7 @@ picture]{%
   [0em]{\vspace*{2\baselineskip}}
   {\parbox{4.5em}{%
     \hfill\Huge\rmfamily\bfseries\color{myred}\thecontentspage}%
-   \vspace*{-2.3\baselineskip}\leftbar\textsc{\small Section~\thecontentslabel}\\\rmfamily}
+   \vspace*{-2.3\baselineskip}\leftbar\textsc{\small\chaptername~\thecontentslabel}\\\rmfamily}
   {}{\endleftbar}
 \titlecontents{section}
   [8.4em]
@@ -436,7 +436,7 @@ picture]{%
 \definecolor{draculawhite-string}{RGB}{152, 195, 121}
 \definecolor{draculawhite-number}{RGB}{249, 189, 89}
 \definecolor{draculawhite-operator}{RGB}{248, 248, 242}
-      
+
 % Define JavaDraculaWhite lstlisting environment
 \lstdefinestyle{JavaDraculaWhite}{
     language=Java,

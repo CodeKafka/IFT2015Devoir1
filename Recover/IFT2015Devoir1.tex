@@ -1,31 +1,31 @@
-\documentclass[10pt]{report}
+\documentclass[9pt]{report}
 \usepackage[utopia]{mathdesign} 
+
 %\usepackage{amsmath,amsfonts,amsthm,amssymb,mathtools}
 \usepackage{amsmath,amsthm,mathtools}
+\usepackage{libertine}
 \input{preamble.tex}
+\usepackage[scr]{rsfso}
 
 \usepackage{titlesec}
 \usepackage{microtype}
+\usepackage[utf8]{inputenc} % Required for inputting international characters
+\usepackage[T1]{fontenc} % Output font encoding for international characters
+
 \definecolor{myblue}{RGB}{0,82,155}
 
 
-
-\usepackage[scr]{rsfso}
-%\usepackage{libertine}
+\lstset{basicstyle=\ttfamily}
 %\usepackage[euler-digits]{eulervm}
 %\usepackage{mathpazo}
-%usepackage{palatino}
+%\usepackage{palatino}
 %usepackage{crimson}
 
 
-\DeclareRobustCommand{\looongrightarrow}{%
-  \DOTSB\relbar\joinrel\relbar\joinrel\relbar\joinrel\rightarrow
-}
-
-
-\title{\Huge{Structures de Données}\\{IFT2015}\\{\textbf{Devoir 1}}}
-\author{\huge{Franz Girardin}}
-\date{\today}
+%\title{\Huge{Interface PM }\\{IFT2015}\\{\textbf{Devoir 1}}}
+%\author{\huge{Franz Girardin}}
+%\date{\today}
+\newcommand{\plogo}{\fbox{$\mathcal{PL}$}} % Generic dummy publisher logo
 \lstset{inputencoding=utf8/latin1}
 
 
@@ -34,35 +34,31 @@
 
 
             %%%%%%%%%%%%%%%%%  Sect.                          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\usepackage{helvet}
 \titleformat{\chapter}[display]
-  {\normalfont\bfseries\color{black}}
+  {\normalfont\bfseries\color{myblue}}
   {\filleft%
     \begin{tikzpicture}
     \node[
       outer sep=0pt,
       text width=1.5cm,
       minimum height=2cm,
-      fill=draculawhite-background,
-      font=\color{black}\fontsize{40}{50}\selectfont,
+      fill=myblue,
+      font=\color{white}\fontsize{40}{50}\selectfont,
       align=center
       ] (num) {\thechapter};
     \node[
       rotate=90,
       anchor=south,
       font=\color{black}\Large\normalfont
-      ] at ([xshift=-5pt]num.west) {\textls[180]{\textsc{\textit{Section}}}};  
+      ] at ([xshift=-5pt]num.west) {\textls[180]{\textsc{Section}}};  
     \end{tikzpicture}%
   }
   {5pt}
-  {\titlerule[2.0pt]\vskip3pt\titlerule\vskip4pt\large\normalfont}
-
-
+  {\titlerule[2.0pt]\vskip3pt\titlerule\vskip4pt\LARGE\normalfont}
 
 \titleformat{\section}
   {\normalfont\scshape}{\thesection}{1em}{}
-
-\titleformat{\subsection}
-  {\normalfont\scshape}{\thesubsection}{1em}{}
 
 
 % Customizing the spacing for the chapter titles
@@ -155,7 +151,6 @@
 	%----------------------------------------------------------------------------------------
 	
 	\vfill % Push the date up 1/4 of the remaining page
-
 	
 \end{titlepage}
 \pagebreak
@@ -193,13 +188,12 @@ public class MistFonction1{
   \paragraph{}
   La fonction présente deux \textbf{cas de bases}, dont l'un retourne 
   la valeur \texttt{1} lorsque \textit{les deux} arguments ont 
-  pour valeur \texttt{1}, alors que l'autre retourne \texttt{0} 
-  sous la condition
-  que \textit{l'un des deux} arguments a pour valur \texttt{0}  . 
+  pour valeur $1$, alors que l'autre retourne $0$ sous la condition
+  que \textit{l'un des deux} arguments a pour valur $0$. 
   \vspace{-1em}
   \paragraph{}
   La seconde portion de la fonction engendre des appels récursifs 
-  qui prennent fin lorsque les cas de bases sont rencontrés. Nous constatons 
+  qui prennent fin lorsque les cas de bases sont rencontré. Nous constatons 
   alors que chaque appel de fonction \textit{hors base} engendre 
   \textbf{deux appels}, jusqu'à ce que les conditions d'arrêts soient effectives. 
   
@@ -447,9 +441,9 @@ public class MistFonction1{
   itératives. La boucle extérireure s'exécute une seule fois de 
   \texttt{0} à \texttt{target}. Plus l'entier \texttt{target} est grand, 
   plus grand sera le nombre d'itérations. Pour cette portion, nous obtenons alors 
-  un complexité de $O(n)$ où $n$ est la valeur de \texttt{target}. Par ailleurs, 
+  un complexité de $O(n)$ où $n$ est la valur de \texttt{target}. Par ailleurs, 
   pour chaque itération de la boucle extérireure, nous effectuons $m$ itérations 
-  de la boucles intérieure où $m$ est le nombre de possibilités dans le 
+  de la boucles intérieure où $m$ est le nombre de possibilité dans le 
   tableau \texttt{options}. Nous avons donc une complexité :
            \[ O( n \cdot m)\]
   Or, il est possible que le nombre d'options fournies soit considérablement 
@@ -473,7 +467,7 @@ public class MistFonction1{
   Pour trouver toutes les combinaisons possibles de \texttt{target} en utilisant les 
   pièces \texttt{pieces}, chaque appel récursif devra tenter de reconstituer 
   \texttt{target}. Pour cela, chaque combinaison sera recalculée plusieurs fois, 
-  puisque pour un caractère donnée de \texttt{target}, on épuise les 
+  puisque pour un caractère donnée de \texttt{target}, on épuises les 
   possibilités de \texttt{pieces}. Si \texttt{target} a une longeur $n$ 
   et \texttt{pieces} a une longueur $m$, la complexité temporelle sera alors :
   \[ O(m^n) \]
@@ -635,8 +629,14 @@ public class ArrayStack<E> implements Stack<E> {
 
     @Override
     public boolean isEmpty() {
-      // Lorsque le dessus a l'index -1, on sait que la pile est vide
+      // Lorsque le dessus a l'index 1, on sait que la pile est vide
         return (dessus == -1);
+    }
+
+    @Override 
+    public boolean isFull() {
+       // Lorsque la pile est pleine, le dessus a l'index 99
+      return (dessus == 99);
     }
 
     @Override
@@ -650,7 +650,7 @@ public class ArrayStack<E> implements Stack<E> {
         return sb.toString();
     }
   
-} 
+}
 
 public interface Stack<E> {
     void push(E e);
@@ -786,7 +786,7 @@ public class ArrayDoubleStack<E> implements DoubleStack<E> {
         if (one) {
             // Verifie que la pile contient au moin un element
             if (dessus1 >= 0) {
-                /* Decremente l'index de dessus, efface le contenu de dessus 
+                /* Decrement l'index de dessus, efface le contenu de dessus 
                 et retourne la valeur qui etait au dessus1 */ 
                 E reponse = doublePile[dessus1];
                 doublePile[dessus1] = null; 
@@ -803,9 +803,8 @@ public class ArrayDoubleStack<E> implements DoubleStack<E> {
           else {
         // Si aucune des pile ne contient d'element 
             throw new IllegalStateException(
-                "La double pile est vide, vous ne pouvez pas obtenir d'element. ");
+                "La double pile est vide, vous ne pouvez pas obtenir d'element. ")
         }
-        return null;
     }
 
     /* En fonction du boolean fourni, on verifie si la pile 
@@ -820,9 +819,8 @@ public class ArrayDoubleStack<E> implements DoubleStack<E> {
         }
           else {
               throw new IllegalStateException(
-                  "La double pile est vide, vous ne pouvez pas regarder l'element. ");
+                  "La double pile est vide, vous ne pouvez pas regarder l'element. ")
         }
-        return null;
     }
     
     /* En fonction du boolean fourni, on retourne la valeur   
@@ -846,7 +844,8 @@ public class ArrayDoubleStack<E> implements DoubleStack<E> {
             System.out.println(doublePile[i]);
         }
     }
-}    \end{lstlisting}
+}
+    \end{lstlisting}
 
     \chapter{Pile spéciale}
 
@@ -862,25 +861,25 @@ public class ArrayDoubleStack<E> implements DoubleStack<E> {
     \end{Exercice}
 
     \begin{lstlisting}[style=JavaDraculaWhite]
- /* Seules les classes qui extends l'interface Java Comparable peuvent etre stockes dans 
+ /* Seules les classes qui extends l'interface Java Comparable peuvent être stockes dans 
  * la SpecialArrayStack. Notre methode push(E e) a besoin de comparer l'element qu'on est sur 
  * le point d'ajouter (e) a l'element Maximal  Maximaux[prochainMaximum]. 
  * Puisqu'on ne connait pas a l'avance le tyupe des objets stockes dans la 
  * SpecialArrayStack, il faut utiliser le type generique E */
-public class SpecialArrayStack<E extends Comparable<E>> implements SpecialStack<E> {   
+public class SpecialArrayStack<E extends Comparable<E>> implements Stack<E> {   
 
     private static final int NombreElementsMaximal = 100;
-    private Object[] Pile;
-    private Object[] Maximaux; // Tableau pour stocker les éléments maximaux
+    private E[] Pile;
+    private E[] Maximaux; // Tableau pour stocker les éléments maximaux
     private int dessus = -1;
     private int prochainMaximum = -1; // Index pour suivre le prochain élément maximal
 
 
     // Constructeur
     public SpecialArrayStack() {
-        Pile = new Object[NombreElementsMaximal];
+        Pile = (E[]) new Object[NombreElementsMaximal];
         // Initialisation du tableau des maximaux
-        Maximaux = new Object[NombreElementsMaximal]; 
+        Maximaux = (E[]) new Object[NombreElementsMaximal]; 
     }
 
     // Implémente les méthodes de l'interface Stack...
@@ -907,7 +906,7 @@ public class SpecialArrayStack<E extends Comparable<E>> implements SpecialStack<
                 IllegalStateException("La pile est vide, vous ne pouvez pas retirer d'élément.");
             }
             
-            E elementRetourne = (E) Pile[dessus];
+            E elementRetourne = Pile[dessus];
             Pile[dessus] = null; // Efface artificiellement l'élément
             dessus--;
             
@@ -923,7 +922,7 @@ public class SpecialArrayStack<E extends Comparable<E>> implements SpecialStack<
     @Override
     public E top() {
         if (isEmpty()) return null;
-        return (E) Pile[dessus];
+        return Pile[dessus];
     }
 
     @Override
@@ -937,6 +936,7 @@ public class SpecialArrayStack<E extends Comparable<E>> implements SpecialStack<
         return (dessus == -1);
     }
 
+    @Override 
     public boolean isFull() {
         return (dessus == NombreElementsMaximal - 1);
     }
@@ -957,148 +957,37 @@ public class SpecialArrayStack<E extends Comparable<E>> implements SpecialStack<
         if (prochainMaximum == -1) {
             throw new IllegalStateException("La pile est vide, il n'y a pas d'élément maximal.");
         }
-        return (E) Maximaux[prochainMaximum];
+        return Maximaux[prochainMaximum];
     }  
 }
-
-
-public interface SpecialStack<E> {
-    void push(E e);
-    E pop();
-    E top();
-    int size();
-    boolean isEmpty();
-    String toString();
-}
+      
     \end{lstlisting}
 
 
-  \chapter{Problèmes avec les piles}
-
-  \section{Royaume Um}
-  Notre algorithme permet de \textit{dépiler} les cinq sections de la ville de 
-  $Nam$ dans la ville temporaires $Sam$, avant d'enpiler ses cinq sections 
-  de la ville de $Sam$ à la ville de $Pam$. À cause de l'ordre spécifique 
-  d'enpilement Dépilement $Nam \looongrightarrow Sam$ et de dépilement 
-  $Sam \looongrightarrow Pam$, l'ordre des section de la ville Sam est 
-  conservé dans la ville Pam. 
-
-  \subsection{Complexité temporelle}
-  La complexité temporelle est $O(n)$, où n est le nombre de sections, car chaque 
-  section doit être déplacée deux fois (une fois de Nam à Pam et une fois de Pam à Sam).
-  
-
-  \subsection{Algorithme en pseudo-code}
-  \begin{algorithm}[H]
-      \SetAlgoLined
-      \KwResult{Déplacer tous les éléments de Nam à Sam}
-     initialisation\;
-     ArrayStack nam, pam, sam\;
-     nam.push("N5: Le Roi")\;
-     nam.push("N4: Gouvernement")\;
-     nam.push("N3: Académie")\;
-     nam.push("N2: Manufacture")\;
-     nam.push("N1: Agriculture")\;
-     \While{nam n'est pas vide OU pam n'est pas vide}{
-      \eIf{nam n'est pas vide}{
-       déplacer le sommet de nam à pam\;
-       }{
-       déplacer le sommet de pam à sam\;
-      }
-      imprimer l'état des piles\;
-      incrémenter le compteur de jours\;
-      \If{compteur de jours est égal à 10}{
-       sortir de la boucle\;
-      }
-     }
-     \eIf{sam contient tous les éléments}{
-      afficher "Déplacement possible en X jours"\;
-      }{
-      afficher "Déplacement non possible en 10 jours"\;
-     }
-     \caption{Algorithme de déplacement de Nam à Sam}
-  \end{algorithm}
 
 
-\begin{lstlisting}[style=JavaDraculaWhite]
- public class MovingDay {
-
-    // Creations des piles et du compteur 
-    private ArrayStack<String> nam;
-    private ArrayStack<String> pam;
-    private ArrayStack<String> sam;
-    private int dayCount;
-
-    // Constructeur mettant en place les parametres du jour
-    // de demenagement
-    public MovingDay() {
-
-        nam = new ArrayStack<>();
-        pam = new ArrayStack<>();
-        sam = new ArrayStack<>();
-        dayCount = 0;
-
-        /* Initialisation des sections dans Nam 
-         * L'ordre des operations est important et la derniere section, N1, 
-         * est ajoutee tee est au sommet) */
-        nam.push("N5: Le Roi");
-        nam.push("N4: Gouvernement");
-        nam.push("N3: Académie");
-        nam.push("N2: Manufacture");
-        nam.push("N1: Agriculture");
-    }
-
-    public void DeplacerSection(ArrayStack<String> origine, ArrayStack<String> destination) {
-        destination.push(origine.pop());
-    }
-
-    public void DeplacerVille() {
-        while (!nam.isEmpty() || !pam.isEmpty()) {
-            if (!nam.isEmpty()) {
-                // Deplacement Nam --> Pam, tant que Nam contient un element
-                DeplacerSection(nam, pam);
-            } else if (!pam.isEmpty()) {
-                /* Deplacement Pam --> Sam, lorsque Nam est vide 
-                 * et tant que Pam n'est pas vide */
-                DeplacerSection(pam, sam);
-            }
-            dayCount++;
-            printStatus();
-            if (dayCount == 10) {
-                break;
-            }
-        }
-    }
-
-    public void printStatus() {
-        System.out.println("Jour " + dayCount + ": Nam (" + formatStack(nam) + "), Pam (" + formatStack(pam) + ") et Sam (" + formatStack(sam) + ")");
-    }
-
-    // Méthode auxiliaire pour formater le contenu de la pile pour l'affichage
-    private String formatStack(ArrayStack<String> stack) {
-        // Retirer les crochets pour l'affichage selon le format de l'enonce
-        return stack.toString().replaceAll("[\\[\\]]", ""); 
-    }
-
-    public String getResult() {
-        if (sam.size() == 5) {
-            return "Il est POSSIBLE de déplacer la ville dans les 10 jours, car " 
-              + dayCount + " jours sont nécessaires.";
-        } else {
-            return "Il est NON POSSIBLE de déplacer la ville dans les 10 jours" 
-              + ", car plus de 10 jours sont nécessaires.";
-        }
-    }
-}
 
 
-public class Main {
-    public static void main(String[] args) {
-        MovingDay jourDeDepart = new MovingDay();
-        jourDeDepart.DeplacerVille();
-        System.out.println(jourDeDepart.getResult());
-    }
-}
-\end{lstlisting}
+
+
+
+
+
+
+
+  %Retourne une liste de listes de ch. char. 
+  %Prend une chain char. et un Liste de ch. char. 
+
+  % Crée un tableau de la taille de la ch. char target 
+  % Chaque élément du tableau table possède maintenant ArrayList
+  % ajoute au début du tableau table une nouvelle ArrayList
+
+
+
+
+
+
+
+
 
 \end{document}

@@ -1,0 +1,24 @@
+\babel@toc {french}{}\relax 
+\contentsline {chapter}{\numberline {1}Analyse de complexité}{2}{chapter.1}%
+\contentsline {section}{\numberline {1.1}\texttt {MistFonction1}}{2}{section.1.1}%
+\contentsline {paragraph}{}{2}{paragraph*.1}%
+\contentsline {paragraph}{}{2}{paragraph*.2}%
+\contentsline {paragraph}{}{2}{paragraph*.4}%
+\contentsline {paragraph}{Complexité dans le temps}{3}{paragraph*.6}%
+\contentsline {paragraph}{Complexité dans l'espace}{3}{paragraph*.8}%
+\contentsline {paragraph}{Raison dêtre}{4}{paragraph*.9}%
+\contentsline {section}{\numberline {1.2}\texttt {MistFonction2}}{4}{section.1.2}%
+\contentsline {paragraph}{Raison d'être}{4}{paragraph*.10}%
+\contentsline {paragraph}{Complexité dans le temps}{4}{paragraph*.11}%
+\contentsline {paragraph}{Complexité dans l'espace}{5}{paragraph*.12}%
+\contentsline {section}{\numberline {1.3}\texttt {MistFonction3}}{5}{section.1.3}%
+\contentsline {paragraph}{Raison d'être}{5}{paragraph*.13}%
+\contentsline {paragraph}{Complexité dans le temps}{5}{paragraph*.14}%
+\contentsline {paragraph}{Complexité dans l'espace}{5}{paragraph*.15}%
+\contentsline {section}{\numberline {1.4}Approche récursive}{5}{section.1.4}%
+\contentsline {subsection}{\numberline {1.4.1}Analyse de {\texttt {MistFonction3}}}{5}{subsection.1.4.1}%
+\contentsline {subsection}{\numberline {1.4.2}Analyse de {\texttt {MistFonction3}}}{6}{subsection.1.4.2}%
+\contentsline {chapter}{\numberline {2}Pile simple}{6}{chapter.2}%
+\contentsline {chapter}{\numberline {3}Pile Double}{8}{chapter.3}%
+\contentsline {chapter}{\numberline {4}Pile spéciale}{10}{chapter.4}%
+\contentsfinish 

@@ -3,20 +3,20 @@
  * le point d'ajouter (e) a l'element Maximal  Maximaux[prochainMaximum]. 
  * Puisqu'on ne connait pas a l'avance le tyupe des objets stockes dans la 
  * SpecialArrayStack, il faut utiliser le type generique E */
-public class SpecialArrayStack<E extends Comparable<E>> implements Stack<E> {   
+public class SpecialArrayStack<E extends Comparable<E>> implements SpecialStack<E> {   
 
     private static final int NombreElementsMaximal = 100;
-    private E[] Pile;
-    private E[] Maximaux; // Tableau pour stocker les éléments maximaux
+    private Object[] Pile;
+    private Object[] Maximaux; // Tableau pour stocker les éléments maximaux
     private int dessus = -1;
     private int prochainMaximum = -1; // Index pour suivre le prochain élément maximal
 
 
     // Constructeur
     public SpecialArrayStack() {
-        Pile = (E[]) new Object[NombreElementsMaximal];
+        Pile = new Object[NombreElementsMaximal];
         // Initialisation du tableau des maximaux
-        Maximaux = (E[]) new Object[NombreElementsMaximal]; 
+        Maximaux = new Object[NombreElementsMaximal]; 
     }
 
     // Implémente les méthodes de l'interface Stack...
@@ -43,7 +43,7 @@ public class SpecialArrayStack<E extends Comparable<E>> implements Stack<E> {
                 IllegalStateException("La pile est vide, vous ne pouvez pas retirer d'élément.");
             }
             
-            E elementRetourne = Pile[dessus];
+            E elementRetourne = (E) Pile[dessus];
             Pile[dessus] = null; // Efface artificiellement l'élément
             dessus--;
             
@@ -59,7 +59,7 @@ public class SpecialArrayStack<E extends Comparable<E>> implements Stack<E> {
     @Override
     public E top() {
         if (isEmpty()) return null;
-        return Pile[dessus];
+        return (E) Pile[dessus];
     }
 
     @Override
@@ -73,7 +73,6 @@ public class SpecialArrayStack<E extends Comparable<E>> implements Stack<E> {
         return (dessus == -1);
     }
 
-    @Override 
     public boolean isFull() {
         return (dessus == NombreElementsMaximal - 1);
     }
@@ -94,7 +93,7 @@ public class SpecialArrayStack<E extends Comparable<E>> implements Stack<E> {
         if (prochainMaximum == -1) {
             throw new IllegalStateException("La pile est vide, il n'y a pas d'élément maximal.");
         }
-        return Maximaux[prochainMaximum];
+        return (E) Maximaux[prochainMaximum];
     }  
 }
 
