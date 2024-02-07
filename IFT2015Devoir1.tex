@@ -129,7 +129,7 @@
 			\large
 			\textit{Matricule}\\
 			\textsc{20078678} \\ 
-			\textsc{20078678} 
+			\textsc{20202901} 
 		\end{flushright}
 	\end{minipage}
 	
@@ -977,7 +977,7 @@ public interface SpecialStack<E> {
 
   \section{Royaume Um}
   Notre algorithme permet de \textit{dépiler} les cinq sections de la ville de 
-  $Nam$ dans la ville temporaires $Sam$, avant d'enpiler ses cinq sections 
+  $Nam$ dans la ville temporaire $Sam$, avant d'empiler ses cinq sections 
   de la ville de $Sam$ à la ville de $Pam$. À cause de l'ordre spécifique 
   d'enpilement Dépilement $Nam \looongrightarrow Sam$ et de dépilement 
   $Sam \looongrightarrow Pam$, l'ordre des section de la ville Sam est 
@@ -1082,10 +1082,10 @@ public interface SpecialStack<E> {
 
     public String getResult() {
         if (sam.size() == 5) {
-            return "Il est POSSIBLE de déplacer la ville dans les 10 jours, car " 
+            return "Il est POSSIBLE de deplacer la ville dans les 10 jours, car " 
               + dayCount + " jours sont nécessaires.";
         } else {
-            return "Il est NON POSSIBLE de déplacer la ville dans les 10 jours" 
+            return "Il est NON POSSIBLE de deplacer la ville dans les 10 jours" 
               + ", car plus de 10 jours sont nécessaires.";
         }
     }
@@ -1100,5 +1100,116 @@ public class Main {
     }
 }
 \end{lstlisting}
+
+    \section{Duplicate    Eater}
+        Notre algorithme parcours le tablau de mots arrête son exécution 
+        lorsque la séquence de mots est vide ou qu'aucun tableau n'a été fourni. 
+        On parcous ensuite le tableau de mots. Lorsque la pile est vide, on ajoute 
+        le mot courant à la pile. Lorsque la pile est non vide, et que le haut de la pile 
+        est égal au mot courant, on dépile le mot au haut de la pile. 
+        Ainsi, la pile contient seulement les éléments uniques. On peut ainsi afficher le 
+        nombre de mots restants dans la pile avec la méthode \texttt{size()}.   
+
+
+    \begin{note}{}{}
+        Nous ne \textbf{supprimons pas} les éléments du tableau de mots et nous 
+        ne regénérons pas de nouveau tableau contenant uniquement les éléments unique. 
+        L'énoncé \textit{ne spécifie pas} le type de retour de la méthode 
+        \texttt{pairDestroyer} et mentionne comme unique exigence qu'elle doit 
+        \textit{imprimer} 
+        le nombre de mots laissés après la destruction de paire. 
+        Or, ce nombre peut être obtenu en considérant les éléements restants 
+        dans la pile, sans avoir à détruire les duplicata du tableau de mots. 
+        Par ailleurs, nous avons interprété le mot \textit{imprimer} comme 
+        un appel à \texttt{System.out.println()} et non à un type de retour \texttt{String}      
+        de la méthode. 
+    \end{note}            
+
+    
+    \section{Complexité temporelle}
+        La complexité de l'algorithme dépend de la boucle for dans la méthode 
+        \texttt{pairDestroyer}. Dans cette boucle, nous effectuons des opérations 
+        de complexité $O(1)$ telles que \texttt{isEmpty()} \texttt{top()} \texttt{equals()}      
+        \texttt{pop()} et \texttt{push()}. En effet, ses opérations ne dépendent pas 
+        de la taille de la séquence de mots fournie en argument. Donc, pour un tableau 
+        \texttt{sequenceDeMots} de taille $n$, la boucle sera exécutée $n$ fois 
+        et comprendra des opérations à temps constant $O(1)$. Par conséquence, 
+        la \textbf{complexité temporelle} globale de \texttt{pairDestroyer} sera 
+        de $O(n)$ où $n$ est la longueur de \texttt{sequenceDeMots}. 
+
+
+    \section{Algorithme et pseudo-code}
+
+        \begin{algorithm}[H]
+        \DontPrintSemicolon
+        \KwData{\texttt{sequenceDeMots}, un tableau de mots}
+        \KwResult{Modifie sequenceDeMots en supprimant les éléments redondants consécutifs}
+
+        \SetKwFunction{FMain}{pairDestroyer}
+        \SetKwProg{Fn}{Function}{:}{}
+        \Fn{\FMain{sequenceDeMots}}{
+            \If{sequenceDeMots est vide}{
+                \KwRet\;
+            }
+            tPile $\gets$ une nouvelle instance de \texttt{ArrayStack}\;
+            \ForEach{\texttt{mot} dans \texttt{sequenceDeMots}}{
+                \eIf{tPile n'est pas vide et tPile.top() est égal à mot}{
+                  \texttt{ tPile.pop()}\;
+                }{
+                  \texttt{tPile.push(mot)}\;
+                }
+            }
+            Afficher("Nombre de mots après suppression : " + \texttt{tPile.size()})\;
+        }
+
+        \end{algorithm}
+
+
+    \begin{lstlisting}[style=JavaDraculaWhite]
+// Definition de la class generique DuplicateEater.
+public class DuplicateEater<E> {
+
+// Instantation d'une pile
+ArrayStack<E> tPile = new ArrayStack<>();
+
+
+/* La méthode pairDestroyer qui prend en entree
+* un tableau generique avec une séquence de mots,
+* et supprime les mots similaires qui se suivent.*/
+public void pairDestroyer (E[] sequenceDeMots) {
+
+    // On verifie si la sequence de mot est vide.
+    if (sequenceDeMots == null || sequenceDeMots.length == 0) {
+      return;
+    }
+
+    // Parcourir la sequence de mots l'un apres l'autre.
+    for (E mot: sequenceDeMots) {
+
+
+      // On suprimme le top s'il est similaire du mot en cours.
+      if (! tPile.isEmpty() && tPile.top().equals(mot)) {
+        tPile.pop();
+        mot = null;
+      }
+
+    // s'il n'est pas similaire on l'insere au top de la pile.
+      else {
+        tPile.push(mot);
+      }
+    }
+    int nmbMotsRestants = tPile.size();
+    System.out.println("le nombre de mots laissés dans la séquence " + 
+        "après cette destruction par paires est : " + tPile.size());
+            // parce que demande d'imprimer
+            // return nmbMotsRestants;  
+    } 
+}     
+    \end{lstlisting}
+
+
+
+
+
 
 \end{document}
